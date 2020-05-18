@@ -1,14 +1,18 @@
+server:
+  port: 8383
+  
 mqtt:
   username: admin
   password: public
   host-url:
     - tcp://localhost:1883
-  client-id: mqttId2
+  client-id: ${COMPUTERNAME}-${server.port}
   mail-topic: mail
   comment-topic: comment
   connection-timeout: 3000
   mail-subscription-topic:
-    - /mail/id/+/publish
+    - $share/mailGroup/mailFilter/mailId/+/topic
+   
   comment-subscription-topic:
-    - /comment/id/+/publish/
+    - $share/commentGroup/commentFilter/commentId/+/topic
     

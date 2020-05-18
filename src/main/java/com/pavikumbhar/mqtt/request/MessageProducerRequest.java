@@ -1,4 +1,4 @@
-package com.pavikumbhar.mqtt.configuration;
+package com.pavikumbhar.mqtt.request;
 
 import org.springframework.integration.mqtt.core.MqttPahoClientFactory;
 import org.springframework.integration.mqtt.support.MqttMessageConverter;
@@ -6,7 +6,11 @@ import org.springframework.messaging.MessageChannel;
 
 import lombok.Getter;
 import lombok.Setter;
-
+/**
+ * 
+ * @author pavikumbhar
+ *
+ */
 @Getter
 @Setter
 public class MessageProducerRequest {

@@ -6,7 +6,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory;
 import org.springframework.integration.mqtt.core.MqttPahoClientFactory;
-
+/**
+ * 
+ * @author pavikumbhar
+ *
+ */
 @Configuration
 public class MqttConfig {
 

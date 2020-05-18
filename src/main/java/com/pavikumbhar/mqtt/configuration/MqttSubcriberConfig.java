@@ -1,21 +1,27 @@
 package com.pavikumbhar.mqtt.configuration;
 
-import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.core.MessageProducer;
 import org.springframework.integration.mqtt.core.MqttPahoClientFactory;
 import org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter;
 import org.springframework.integration.mqtt.support.DefaultPahoMessageConverter;
 import org.springframework.messaging.MessageChannel;
-import org.springframework.messaging.MessageHandler;
-
+/**
+ * 
+ * @author pavikumbhar
+ *
+ */
 @Configuration
 public class MqttSubcriberConfig {
 
+	public static final String MQTT_MAIL_INPUT_CHANNEL = "mqttMailInputChannel";
+	public static final String MQTT_COMMENT_INPUT_CHANNEL = "mqttCommentInputChannel";
+	
 	@Autowired
 	private MqttProperties mqttProp;
 
@@ -23,7 +29,7 @@ public class MqttSubcriberConfig {
 	private MqttPahoClientFactory mqttPahoClientFactory;
 
 	@Bean
-	public MessageChannel mailInputChannel() {
+	public MessageChannel mqttMailInputChannel() {
 		return new DirectChannel();
 	}
 
@@ -32,27 +38,27 @@ public class MqttSubcriberConfig {
 	@Bean
 	public MessageProducer mailMessageProducer() {
 		MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter(
-				mqttProp.getClientId() + "_input", mqttPahoClientFactory, mqttProp.getMailSubscriptionTopic());
+				mqttProp.getClientId() + new Random().nextInt(), mqttPahoClientFactory, mqttProp.getMailSubscriptionTopic());
 		adapter.setCompletionTimeout(mqttProp.getConnectionTimeout());
 		adapter.setConverter(new DefaultPahoMessageConverter());
-		adapter.setOutputChannel(mailInputChannel());
+		adapter.setOutputChannel(mqttMailInputChannel());
 		return adapter;
 	}
 	
+	@Bean
+	public MessageChannel mqttCommentInputChannel() {
+		return new DirectChannel();
+	}
 	
+	@Bean
+	public MessageProducer commentMessageProducer() {
+		MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter(
+				mqttProp.getClientId() + new Random().nextInt(), mqttPahoClientFactory, mqttProp.getCommentSubscriptionTopic());
+		adapter.setCompletionTimeout(mqttProp.getConnectionTimeout());
+		adapter.setConverter(new DefaultPahoMessageConverter());
+		adapter.setOutputChannel(mqttCommentInputChannel());
+		return adapter;
+	}
 	
-	
-	
-    @Bean
-    @ServiceActivator(inputChannel = "mailInputChannel")
-    public MessageHandler handler() {
-        return message -> {
-        	System.out.println( MqttAsyncClient.generateClientId());
-        	  System.out.println(String.format("[%s] %s", message.getHeaders().get("mqtt_receivedTopic"), message.getPayload()));
-            System.out.println("############################################"+message.getHeaders().get("mqtt_receivedTopic")+"  "+ message.getPayload());
-        
-        };
-    }
-    
 
 }

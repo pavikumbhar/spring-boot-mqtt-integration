@@ -10,7 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pavikumbhar.mqtt.gateway.MailMqttGateway;
 
-
+import lombok.extern.slf4j.Slf4j;
+/**
+ * 
+ * @author pavikumbhar
+ *
+ */
+@Slf4j
 @RestController
 @RequestMapping(value = "/api/mqtt")
 public class MqttController {
@@ -20,8 +26,8 @@ public class MqttController {
 
     @PostMapping("publish")
     public void publishMessageV2(@RequestBody String message) {
-        System.err.println(message);
-        String topic="/mail/id/"+new Random().nextInt()+"/publish";
+        log.info("message : {}",message);
+        String topic="mailFilter/mailId/"+new Random().nextInt()+"/topic";
         mailMqttGateway.sendToMqtt(topic,message);
 
     }
