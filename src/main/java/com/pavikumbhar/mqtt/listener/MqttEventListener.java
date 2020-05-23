@@ -7,6 +7,11 @@ import org.springframework.integration.mqtt.event.MqttMessageSentEvent;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
+/**
+ * 
+ * @author pavikumbhar
+ *
+ */
 
 @Slf4j
 @Component
@@ -22,7 +27,7 @@ public  class MqttEventListener implements ApplicationListener<MqttIntegrationEv
     	
     	 if (event instanceof MqttMessageSentEvent) {
     	   
-    		 log.error("MQTT Error: " + event.getCause().getMessage());
+    		 log.error("MQTT Error: {}" , event.getCause().getMessage());
             
          }
     }

@@ -25,7 +25,7 @@ public class MqttController {
     private MailMqttGateway mailMqttGateway;
 
     @PostMapping("publish")
-    public void publishMessageV2(@RequestBody String message) {
+    public void publishMessage(@RequestBody String message) {
         log.info("message : {}",message);
         String topic="mailFilter/mailId/"+new Random().nextInt()+"/topic";
         mailMqttGateway.sendToMqtt(topic,message);

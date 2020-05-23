@@ -1,7 +1,7 @@
 spring:
   profiles:
     active:
-    - dev
+    - test
     
   application:
     name: spring-boot-mqtt-intgration
