@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.1.14.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id "org.sonarqube" version "2.8"
 }
 
 group = 'com.pavikumbhar.mqtt'
