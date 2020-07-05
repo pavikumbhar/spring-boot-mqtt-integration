@@ -9,6 +9,12 @@ group = 'com.pavikumbhar.mqtt'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+bootJar {
+    archiveBaseName = 'spring-boot-mqtt-intgration'
+    archiveVersion = '1.0.0'
+    archiveFileName = 'spring-boot-mqtt-intgration.jar'
+}
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor

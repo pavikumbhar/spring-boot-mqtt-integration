@@ -26,7 +26,7 @@ public class MqttConfig {
 		
 		return options;
 	}
-	
+
 	@Bean
     public MqttPahoClientFactory mqttClientFactory() {
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
