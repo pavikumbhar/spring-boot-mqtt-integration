@@ -50,11 +50,11 @@ public class MqttPublisherConfig {
     
     @Bean
     @ServiceActivator(inputChannel = MQTT_COMMENT_OUTBOUND_CHANNEL)
-    public MessageHandler commentMailOutputHandler() {
-        MqttPahoMessageHandler mqttMailOutputHandler = new MqttPahoMessageHandler(mqttProp.getClientId() + new Random().nextInt(), mqttPahoClientFactory);
-        mqttMailOutputHandler.setAsync(true);
-        mqttMailOutputHandler.setDefaultTopic(mqttProp.getCommentTopic());
-        return mqttMailOutputHandler;
+    public MessageHandler mqttCommentOutputHandler() {
+        MqttPahoMessageHandler mqttCommentOutputHandler = new MqttPahoMessageHandler(mqttProp.getClientId() + new Random().nextInt(), mqttPahoClientFactory);
+        mqttCommentOutputHandler.setAsync(true);
+        mqttCommentOutputHandler.setDefaultTopic(mqttProp.getCommentTopic());
+        return mqttCommentOutputHandler;
     }
     
     

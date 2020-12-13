@@ -37,12 +37,12 @@ public class MqttSubcriberConfig {
 	
 	@Bean
 	public MessageProducer mailMessageProducer() {
-		MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter(
+		MqttPahoMessageDrivenChannelAdapter mailMessageProducer = new MqttPahoMessageDrivenChannelAdapter(
 				mqttProp.getClientId() + new Random().nextInt(), mqttPahoClientFactory, mqttProp.getMailSubscriptionTopic());
-		adapter.setCompletionTimeout(mqttProp.getConnectionTimeout());
-		adapter.setConverter(new DefaultPahoMessageConverter());
-		adapter.setOutputChannel(mqttMailInputChannel());
-		return adapter;
+		mailMessageProducer.setCompletionTimeout(mqttProp.getConnectionTimeout());
+		mailMessageProducer.setConverter(new DefaultPahoMessageConverter());
+		mailMessageProducer.setOutputChannel(mqttMailInputChannel());
+		return mailMessageProducer;
 	}
 	
 	@Bean
@@ -52,12 +52,12 @@ public class MqttSubcriberConfig {
 	
 	@Bean
 	public MessageProducer commentMessageProducer() {
-		MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter(
+		MqttPahoMessageDrivenChannelAdapter commentMessageProducer = new MqttPahoMessageDrivenChannelAdapter(
 				mqttProp.getClientId() + new Random().nextInt(), mqttPahoClientFactory, mqttProp.getCommentSubscriptionTopic());
-		adapter.setCompletionTimeout(mqttProp.getConnectionTimeout());
-		adapter.setConverter(new DefaultPahoMessageConverter());
-		adapter.setOutputChannel(mqttCommentInputChannel());
-		return adapter;
+		commentMessageProducer.setCompletionTimeout(mqttProp.getConnectionTimeout());
+		commentMessageProducer.setConverter(new DefaultPahoMessageConverter());
+		commentMessageProducer.setOutputChannel(mqttCommentInputChannel());
+		return commentMessageProducer;
 	}
 	
 
