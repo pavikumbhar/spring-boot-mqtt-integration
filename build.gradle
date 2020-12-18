@@ -10,9 +10,9 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 bootJar {
-    archiveBaseName = 'spring-boot-mqtt-intgration'
+    archiveBaseName = 'spring-boot-mqtt-integration'
     archiveVersion = '1.0.0'
-    archiveFileName = 'spring-boot-mqtt-intgration.jar'
+    archiveFileName = 'spring-boot-mqtt-integration.jar'
 }
 
 configurations {
