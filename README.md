@@ -1,1 +1,1 @@
-# spring-boot-mqtt-intgration
+# spring-boot-mqtt-integration
